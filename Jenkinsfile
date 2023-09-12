@@ -1,10 +1,10 @@
 node {
     def app
     
-    env.IMAGE = 'okaforuchena/blue-green-rollout'
+    env.IMAGE = 'Okaforuchena/blue-green-rollout'
 
     stage('Clone repository') {
-             git branch: 'main', url: 'https://github.com/okaforuchena/rollout-manifests.git'  
+             git branch: 'main', url: 'https://github.com/Okaforuchena/rollout-manifests.git'  
     }
 
     stage('Update GIT') {
@@ -13,7 +13,7 @@ node {
                     withCredentials([usernamePassword(credentialsId: 'uo-github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                         //script {def encodedPassword = URLEncoder.encode("$GIT_PASSWORD",'UTF-8')}
                         sh "git config user.email okaforuchena11@gmail.com"
-                        sh "git config user.name okaforuchena"
+                        sh "git config user.name Okaforuchena"
                         //sh "git switch master"
                         sh "cat rollout.yml"
                         sh "sed -i 's+${IMAGE}.*+${IMAGE}:${DOCKERTAG}+g' rollout.yml"
